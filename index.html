@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GW ARYAN | ULTRA-VIP V12</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Share+Tech+Mono&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        
+        body { 
+            background: #050505; 
+            color: #00f2ff; 
+            font-family: 'Share Tech Mono', monospace; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        /* Container Design */
+        .container { 
+            width: 100%; 
+            max-width: 380px; 
+            background: rgba(10, 15, 30, 0.95); 
+            border: 2px solid #00f2ff; 
+            border-radius: 20px; 
+            padding: 30px; 
+            text-align: center; 
+            display: none; 
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.2), inset 0 0 10px rgba(0, 242, 255, 0.1);
+            position: relative;
+        }
+
+        .active { display: block; animation: powerOn 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+
+        @keyframes powerOn {
+            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        h1 { 
+            font-family: 'Orbitron', sans-serif; 
+            font-size: 20px; 
+            margin-bottom: 25px; 
+            color: #fff; 
+            text-shadow: 0 0 15px #00f2ff;
+            letter-spacing: 2px;
+        }
+
+        /* Box & Labels */
+        .box { 
+            background: rgba(0, 242, 255, 0.03); 
+            border: 1px solid rgba(0, 242, 255, 0.2); 
+            padding: 20px; 
+            margin-bottom: 18px; 
+            border-radius: 12px; 
+            border-left: 5px solid #00f2ff;
+            transition: 0.3s;
+        }
+
+        .label { 
+            font-size: 11px; 
+            opacity: 0.7; 
+            letter-spacing: 3px; 
+            margin-bottom: 8px; 
+            text-transform: uppercase; 
+            color: #fff; 
+        }
+
+        .value { font-family: 'Orbitron', sans-serif; font-size: 26px; font-weight: 900; }
+        
+        /* Signal Colors */
+        #signal { font-size: 48px; margin: 10px 0; transition: 0.5s; }
+        .big { color: #00ffcc; text-shadow: 0 0 30px #00ffcc; }
+        .small { color: #ff0055; text-shadow: 0 0 30px #ff0055; }
+        
+        #jackpot-no { font-size: 55px; color: #fff; text-shadow: 0 0 20px #00f2ff; }
+
+        /* Input & Button */
+        input { 
+            width: 100%; 
+            padding: 18px; 
+            margin-bottom: 20px; 
+            background: #000; 
+            border: 1px solid #00f2ff; 
+            color: #00f2ff; 
+            text-align: center; 
+            font-family: 'Orbitron'; 
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        button { 
+            width: 100%; 
+            padding: 18px; 
+            background: #00f2ff; 
+            color: #000; 
+            border: none; 
+            font-family: 'Orbitron'; 
+            font-weight: 900; 
+            cursor: pointer; 
+            border-radius: 10px;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+            transition: 0.3s;
+        }
+
+        button:hover { background: #fff; box-shadow: 0 0 30px #fff; }
+        button:active { transform: scale(0.96); }
+
+        #timer { 
+            position: absolute; 
+            right: 20px; 
+            top: 20px; 
+            color: #ff0055; 
+            font-size: 16px; 
+            font-weight: bold;
+            text-shadow: 0 0 10px #ff0055;
+        }
+
+        /* History Table */
+        .history { margin-top: 20px; border-top: 1px solid rgba(0, 242, 255, 0.2); padding-top: 15px; }
+        .row { 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 12px; 
+            background: rgba(0, 242, 255, 0.05); 
+            margin-bottom: 8px; 
+            font-size: 13px; 
+            border-radius: 6px;
+            border: 1px solid rgba(0, 242, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="login-page" class="container active">
+        <h1>NEURAL LOGIN</h1>
+        <div class="label" style="margin-bottom: 15px;">AUTHENTICATION REQUIRED</div>
+        <input type="password" id="access-key" placeholder="ENTER ACCESS KEY">
+        <button onclick="checkKey()">BOOT SYSTEM</button>
+        <p style="font-size: 10px; margin-top: 20px; opacity: 0.5;">PROPERTY OF GW ARYAN LIVE</p>
+    </div>
+
+    <div id="prediction-page" class="container">
+        <div id="timer">00</div>
+        <h1>GW ARYAN ULTRA</h1>
+        
+        <div class="box">
+            <div class="label">CURRENT PERIOD</div>
+            <div id="period" class="value" style="font-size: 18px;">WAITING...</div>
+        </div>
+
+        <div class="box">
+            <div class="label">AI ANALYSIS</div>
+            <div id="signal" class="value">STABLE</div>
+        </div>
+
+        <div class="box" style="border-left-color: #ff0055;">
+            <div class="label">JACKPOT NUMBER</div>
+            <div id="jackpot-no">--</div>
+        </div>
+
+        <div class="history" id="history-list">
+            </div>
+    </div>
+
+    <script>
+        let lastPeriod = "";
+        let currentPred = "";
+        let currentNum = "";
+        let winStreak = 0;
+
+        // Secure Key
+        const AUTH_KEY = "SHOOTER_VIP";
+
+        function checkKey() {
+            const userKey = document.getElementById('access-key').value;
+            if(userKey === AUTH_KEY) {
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('prediction-page').classList.add('active');
+                startEngine();
+            } else {
+                alert("ACCESS DENIED: WRONG SECURITY KEY");
+                document.getElementById('access-key').value = "";
+            }
+        }
+
+        function startEngine() {
+            setInterval(() => {
+                const now = new Date();
+                const seconds = now.getUTCSeconds();
+                document.getElementById('timer').innerText = (60 - seconds).toString().padStart(2, '0');
+                
+                // Period ID Generation
+                const dateStr = now.getUTCFullYear().toString() + (now.getUTCMonth() + 1).toString().padStart(2, '0') + now.getUTCDate().toString().padStart(2, '0');
+                const totalMins = (now.getUTCHours() * 60) + now.getUTCMinutes();
+                const pId = dateStr + "1000" + (1001 + totalMins);
+
+                if (pId !== lastPeriod) {
+                    if (lastPeriod !== "") processResult(lastPeriod, currentPred, currentNum);
+                    generatePrediction(pId);
+                    lastPeriod = pId;
+                }
+            }, 1000);
+        }
+
+        function generatePrediction(pId) {
+            document.getElementById('period').innerText = pId;
+            const lastDigit = parseInt(pId.slice(-1));
+            
+            // AI Pattern Logic
+            currentPred = (lastDigit % 2 === 0) ? "BIG" : "SMALL";
+            
+            if(currentPred === "BIG") {
+                currentNum = [5, 6, 7, 8, 9][Math.floor(Math.random() * 5)];
+            } else {
+                currentNum = [0, 1, 2, 3, 4][Math.floor(Math.random() * 5)];
+            }
+            
+            const sig = document.getElementById('signal');
+            sig.innerText = currentPred;
+            sig.className = "value " + (currentPred === "BIG" ? "big" : "small");
+            document.getElementById('jackpot-no').innerText = currentNum;
+        }
+
+        function processResult(p, pred, num) {
+            const list = document.getElementById('history-list');
+            
+            // Realistic Win/Loss simulation
+            let isWin = (winStreak < 4) ? true : (Math.random() < 0.4);
+            
+            if(isWin) winStreak++;
+            else winStreak = 0;
+
+            const status = isWin ? "SUCCESS" : "FAILED";
+            const color = isWin ? "#00ffcc" : "#ff0055";
+            let res = isWin ? pred : (pred === "BIG" ? "SMALL" : "BIG");
+
+            const row = document.createElement('div');
+            row.className = 'row';
+            row.innerHTML = `
+                <span>#${p.slice(-3)}</span>
+                <span style="font-weight:900; letter-spacing:1px;">${res}</span>
+                <span style="color:${color}; font-weight:bold;">${status}</span>
+            `;
+            
+            if (list.children.length >= 3) list.removeChild(list.lastChild);
+            list.insertBefore(row, list.firstChild);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+telethon
+motor
+dnspython
+cryptg
